@@ -19,7 +19,14 @@ menu() {
         msg+="=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=\n"
         msg+="GERE SEU TESTE AGORA MESMO!\n\n"
         msg+="=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=\n"
-
+        msg+="<b>👇🏽 DISPONIBILIZAMOS SOMENTE 👇🏽</b>\n"
+        msg+="=×=×=×=×=×=×=×=×=×=×=×=×=×=×=×=\n"
+        msg+="<b>🔴 CLARO 🟣 VIVO 🔵 TIM</b>\n"
+        ShellBot.sendMessage --chat_id ${message_chat_id[$id]} \
+        --text "$(echo -e $msg)" \
+        --reply_markup "$keyboard1" \
+        --parse_mode html
+        return 0
 }
 
 # - funcao criar ssh
@@ -49,7 +56,7 @@ rm -rf /etc/SSHPlus/userteste/$usuario.sh" > /etc/SSHPlus/userteste/$usuario.sh
     echo ${callback_query_from_id} >> lista
     # - ENVIA O SSH
     ShellBot.sendMessage --chat_id ${callback_query_message_chat_id} \
-    --text "$(echo -e "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n        <b>✅ Criado com sucesso ✅</b>\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n            👤 USUARIO: <code>$usuario</code>\n               🔑 SENHA: <code>$senha</code>\n             ⏰ Expira em: $tempo Horas")\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n   \n <b>Suporte das 8h até às 21h, @john0ios</b>\n  ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬" \
+    --text "$(echo -e "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n        <b>✅ Criado com sucesso ✅</b>\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n            👤 USUARIO: <code>$usuario</code>\n               🔑 SENHA: <code>$senha</code>\n             ⏰ Expira em: $tempo Horas")\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n   \n <b>Suporte das 8h até às 21h, @seuuser</b>\n  ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬" \
     --parse_mode html
     return 0
 }
@@ -61,8 +68,41 @@ enviarapp() {
     ShellBot.sendDocument --chat_id ${callback_query_message_chat_id} \
         --document "@/root/base.apk" \
     return 0
-
+    
 }
+    
+#enviar sks
+enviarsks() {
+    ShellBot.answerCallbackQuery --callback_query_id ${callback_query_id[$id]} \
+        --text "♻️ ENVIANDO ARQUIVOS SKS..."
+    ShellBot.sendDocument --chat_id ${callback_query_message_chat_id} \
+        --document "@/root/CLARO.sks" \
+    return 0
+    ShellBot.sendDocument --chat_id ${callback_query_message_chat_id} \
+        --document "@/root/VIVO.sks" \
+    return 0
+    ShellBot.sendDocument --chat_id ${callback_query_message_chat_id} \
+        --document "@/root/TIM.sks" \
+    return 0
+    
+}
+    
+#enviar ehi
+enviarehi() {
+    ShellBot.answerCallbackQuery --callback_query_id ${callback_query_id[$id]} \
+        --text "♻️ ENVIANDO ARQUIVOS EHI..."
+    ShellBot.sendDocument --chat_id ${callback_query_message_chat_id} \
+        --document "@/root/CLARO.ehi" \
+    return 0
+    ShellBot.sendDocument --chat_id ${callback_query_message_chat_id} \
+        --document "@/root/VIVO.ehi" \
+    return 0
+    ShellBot.sendDocument --chat_id ${callback_query_message_chat_id} \
+        --document "@/root/TIM.ehi" \
+    return 0
+
+
+    }
 
 #informacoes usuario
 infouser () {
@@ -78,7 +118,7 @@ ShellBot.InlineKeyboardButton --button 'botao1' --line 1 --text '♻️ GERAR TE
 ShellBot.InlineKeyboardButton --button 'botao1' --line 2 --text '🔰 BAIXAR APLICATIVO 🔰' --callback_data 'appenviar'
 ShellBot.InlineKeyboardButton --button 'botao1' --line 3 --text '🔰 ARQUIVOS SKS 🔰' --callback_data 'sksenviar'
 ShellBot.InlineKeyboardButton --button 'botao1' --line 3 --text '🔰 ARQUIVOS EHI 🔰' --callback_data 'ehienviar'
-ShellBot.InlineKeyboardButton --button 'botao1' --line 4 --text '👨‍💻COMPRE AQUI👨‍💻'  --callback_data '2' --url 't.me/john0ios' # privado
+ShellBot.InlineKeyboardButton --button 'botao1' --line 4 --text '👨‍💻COMPRE AQUI👨‍💻'  --callback_data '2' --url 't.me/admin' # privado
 ShellBot.InlineKeyboardButton --button 'botao1' --line 5 --text '⚠️ TERMOS ⚠️'  --callback_data '3' --url 'https://bitbin.it/WUwitdNa/raw/' # termos
 ShellBot.regHandleFunction --function criarteste --callback_data gerarssh
 ShellBot.regHandleFunction --function enviarapp --callback_data appenviar
